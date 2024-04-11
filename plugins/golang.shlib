@@ -1,0 +1,10 @@
+#!/usr/bin/env false
+# shellcheck shell=bash
+
+function plugin_golang() {
+    go clean -modcache
+}
+
+if [ "$(check_binary go)" -eq 1 ]; then
+    register_plugin plugin_golang
+fi

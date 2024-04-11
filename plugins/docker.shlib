@@ -1,0 +1,12 @@
+#!/usr/bin/env false
+# shellcheck shell=bash
+
+function plugin_docker() {
+    # https://docs.docker.com/config/pruning/
+    docker image prune -f
+    docker builder prune -af
+}
+
+if [ "$(check_binary docker)" -eq 1 ]; then
+    register_plugin plugin_docker
+fi

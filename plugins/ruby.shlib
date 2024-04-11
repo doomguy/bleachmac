@@ -1,0 +1,10 @@
+#!/usr/bin/env false
+# shellcheck shell=bash
+
+function plugin_ruby() {
+    gem cleanup
+}
+
+if [ "$(check_binary gem)" -eq 1 ]; then
+    register_plugin plugin_ruby
+fi

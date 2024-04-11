@@ -1,0 +1,10 @@
+#!/usr/bin/env false
+# shellcheck shell=bash
+
+function plugin_nodejs() {
+    npm cache clean --force
+}
+
+if [ "$(check_binary npm)" -eq 1 ]; then
+    register_plugin plugin_nodejs
+fi

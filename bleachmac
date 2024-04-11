@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+function check_binary() {
+    # check if given binary exists and is executable
+    if [ -x "$(command -v "$1")" ]; then
+        echo 1 # True
+    else
+        echo 0 # False
+    fi  
+}
+
+declare -a plugins
+
+function register_plugin() {
+  local plugin_name=$1
+  # add the plugin to the plugins array
+  plugins+=("$plugin_name")
+}
+
+function log() {
+    echo -e "[+] $1"
+}
+
+function free_space_mb() {
+    # get free space in MB
+    echo $(($(df -k / | awk 'NR==2{print $4}') / 1024))
+}
+
+# globals for stats
+disk_space_init=$(free_space_mb)
+log "Free Space: ${disk_space_init}MB"
+disk_space_tmp=$disk_space_init
+gained_total=0
+
+function disk_stats() {
+    # determine free hdd space
+    free_space=$(free_space_mb)
+    gained_space=$((disk_space_tmp - free_space))
+    disk_space_tmp=$free_space
+    gained_total=$((disk_space_init - free_space))
+    log "Free: ${free_space}MB, Gained: ${gained_space}MB, Gained Total: ${gained_total}MB)\n"
+}
+
+## main
+
+# Load all plugins
+for plugin in "$(dirname "$0")"/plugins/*.shlib; do
+  # shellcheck disable=SC1090
+  source "$plugin"
+done
+
+# Call all registered functions
+for plugin_name in "${!plugins[@]}"; do
+  log "== Executing '${plugins[$plugin_name]}'"
+  ${plugins[$plugin_name]}
+  disk_stats
+done
+
+log "All done! Free space: $(free_space_mb)MB"

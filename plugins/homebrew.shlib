@@ -1,0 +1,14 @@
+#!/usr/bin/env false
+# shellcheck shell=bash
+
+function plugin_homebrew() {
+    brew autoremove
+    brew cleanup -s --prune=all
+    
+    ## get rid of everything
+    # rm -rf "$(brew --cache)"
+}
+
+if [ "$(check_binary brew)" -eq 1 ]; then
+    register_plugin plugin_homebrew
+fi
