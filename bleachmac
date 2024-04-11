@@ -28,7 +28,6 @@ function free_space_mb() {
 
 # globals for stats
 disk_space_init=$(free_space_mb)
-log "Free Space: ${disk_space_init}MB"
 disk_space_tmp=$disk_space_init
 gained_total=0
 

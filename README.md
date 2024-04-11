@@ -1,4 +1,4 @@
-# bleachmac
+# BleachMac
 
 `bleachmac` is a bash utility for cleaning up various caches on macOS (and possibly other platforms that run bash).
 
