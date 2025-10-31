@@ -1,0 +1,20 @@
+#!/usr/bin/env false
+# shellcheck shell=bash
+
+function plugin_apple_tv() {
+    set -x
+    
+    WORKDIR="$HOME/Movies/TV/Media.localized/Movies/"
+    if [ -d "$WORKDIR" ]; then
+        find "$WORKDIR" -print -delete
+    fi
+
+    WORKDIR="$HOME/Movies/TV/Media.localized/TV Shows/"
+    if [ -d "$WORKDIR" ]; then
+        find "$WORKDIR" -print -delete
+    fi
+
+    set +x
+}
+
+register_plugin plugin_apple_tv
