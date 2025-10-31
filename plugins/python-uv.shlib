@@ -1,0 +1,13 @@
+#!/usr/bin/env false
+# shellcheck shell=bash
+
+function plugin_python_uv() {
+    # https://docs.astral.sh/uv/reference/cli/#uv-cache-clean
+    uv cache clean
+    # https://docs.astral.sh/uv/reference/cli/#uv-cache-prune
+    uv cache prune
+}
+
+if [ "$(check_binary uv)" -eq 1 ]; then
+    register_plugin plugin_python_uv
+fi
