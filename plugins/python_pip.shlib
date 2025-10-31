@@ -1,0 +1,10 @@
+#!/usr/bin/env false
+# shellcheck shell=bash
+
+function plugin_python_pip() {
+    pip cache purge
+}
+
+if [ "$(check_binary pip)" -eq 1 ]; then
+    register_plugin plugin_python_pip
+fi
