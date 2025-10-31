@@ -1,0 +1,10 @@
+#!/usr/bin/env false
+# shellcheck shell=bash
+
+function plugin_recyclebin() {
+    osascript -e 'tell application "Finder" to empty'
+}
+
+if [ "$(check_binary osascript)" -eq 1 ]; then
+    register_plugin plugin_recyclebin
+fi

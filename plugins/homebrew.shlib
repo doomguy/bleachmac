@@ -4,7 +4,8 @@
 function plugin_homebrew() {
     brew autoremove
     brew cleanup -s --prune=all
-    
+   
+    echo "brew current cache size: $(du -hs $(brew --cache))" 
     ## get rid of everything
     # rm -rf "$(brew --cache)"
 }

@@ -37,7 +37,7 @@ function disk_stats() {
     gained_space=$((disk_space_tmp - free_space))
     disk_space_tmp=$free_space
     gained_total=$((disk_space_init - free_space))
-    log "Free: ${free_space}MB, Gained: ${gained_space}MB, Gained Total: ${gained_total}MB)\n"
+    log "Free: ${free_space}MB, Gained LastOp: ${gained_space}MB, Gained Total: ${gained_total}MB)\n"
 }
 
 ## main

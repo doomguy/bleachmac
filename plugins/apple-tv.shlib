@@ -1,0 +1,16 @@
+#!/usr/bin/env false
+# shellcheck shell=bash
+
+function plugin_apple-tv() {
+    set -x
+    if [ -d "$HOME/Movies/TV/Media.localized/Movies" ]; then
+        rm -rfv "$HOME/Movies/TV/Media.localized/Movies/*"
+    fi
+
+    if [ -d "$HOME/Movies/TV/Media.localized/TV Shows" ]; then
+        rm -rfv "$HOME/Movies/TV/Media.localized/TV Shows/*"
+    fi
+    set +x
+}
+
+register_plugin plugin_apple-tv
